@@ -1,0 +1,34 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:MyLearning.Desktop.ViewModels.Dashboard"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:cards = "using:MyLearning.Desktop.Views.Dashboard"
+             xmlns:cardsvm="using:MyLearning.Desktop.ViewModels.Dashboard"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MyLearning.Desktop.Views.Dashboard.DashboardView"
+             x:DataType="vm:DashboardViewModel">
+             
+
+
+          <StackPanel Spacing="12">
+            <Button
+              Content="New copybook" Command="{Binding CreateCopyBookCommand}" HorizontalAlignment="Left"/>
+          <ScrollViewer>
+            <ItemsControl ItemsSource="{Binding CopyBooks}">
+                <ItemsControl.ItemsPanel>
+                  <ItemsPanelTemplate>  
+                    <WrapPanel Orientation="Horizontal" />
+                  </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate x:DataType="cardsvm:CopyBookCardViewModel">
+                    <cards:CopyBookCardView />
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            
+          </ScrollViewer>
+          </StackPanel>
+</UserControl>

@@ -1,0 +1,26 @@
+<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="using:MyLearning.Desktop.ViewModels.Dashboard"
+    x:Class="MyLearning.Desktop.Views.Dashboard.CopyBookCardView"
+    x:DataType="vm:CopyBookCardViewModel">
+
+    <Border
+        Width="220"
+        Margin="8"
+        Padding="10"
+        BorderBrush="Gray"
+        BorderThickness="1">
+
+        <StackPanel Spacing="8">
+            <Image
+                Height="150"
+                Stretch="UniformToFill"
+                Source="{Binding CoverImage}" />
+
+            <TextBlock
+                FontWeight="Bold"
+                Text="{Binding Name}" />
+        </StackPanel>
+    </Border>
+</UserControl>

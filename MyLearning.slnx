@@ -1,0 +1,7 @@
+<Solution>
+<Project Path="MyLearning.Application/MyLearning.Application.csproj" />
+<Project Path="MyLearning.Desktop/MyLearning.Desktop.csproj" />
+<Project Path="MyLearning.Domain\MyLearning.Domain.csproj" />
+<Project Path="MyLearning.Infrastructure/MyLearning.Infrastructure.csproj" />
+<Project Path="MyLearning.Rendering/MyLearning.Rendering.csproj" />
+</Solution>

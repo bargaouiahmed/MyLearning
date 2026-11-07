@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.14" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.14" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyLearning.Application\MyLearning.Application.csproj" />
+    <ProjectReference Include="..\MyLearning.Domain\MyLearning.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
