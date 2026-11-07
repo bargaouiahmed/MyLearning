@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Avalonia.Media.Imaging;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MyLearning.Application.Interactions.Dashboard;
 using MyLearning.Desktop.Abstractions;
+using MyLearning.Desktop.Services.BookPreviewService;
 using MyLearning.Domain.CopyBook;
 
 namespace MyLearning.Desktop.ViewModels.Dashboard
@@ -15,12 +17,15 @@ namespace MyLearning.Desktop.ViewModels.Dashboard
     {
         private readonly IDashboardInteractions _dashboardInteractions;
         private readonly ICreateCopyBookDialog _createCopyBookDialog;
-        public DashboardViewModel(IDashboardInteractions dashboardInteractions, ICreateCopyBookDialog createCopyBookDialog)
+        private readonly IBookPreviewService _bookPreviewService;
+        public DashboardViewModel(IDashboardInteractions dashboardInteractions, ICreateCopyBookDialog createCopyBookDialog, IBookPreviewService bookPreviewService)
         {
             _dashboardInteractions = dashboardInteractions;
             _createCopyBookDialog = createCopyBookDialog;
 
+
             CopyBooks = [];
+            _bookPreviewService = bookPreviewService;
         }
 
 
@@ -40,7 +45,7 @@ namespace MyLearning.Desktop.ViewModels.Dashboard
             try
             {
                 var paginatedCopyBooks = await _dashboardInteractions.GetCopyBooksPaginatedAsync(pageSize, lastCopyBookId, cancellationToken);
-                CopyBooks = [.. paginatedCopyBooks.CopyBooks.Select(cb => new CopyBookCardViewModel(cb.Name.Value, cb.Cover?.Path != null ? new Avalonia.Media.Imaging.Bitmap(cb.Cover.Path.Value) : null))];
+                CopyBooks = [.. paginatedCopyBooks.CopyBooks.Select(cb => new CopyBookCardViewModel(cb.Name.Value, cb.Cover?.Path != null ? new Bitmap(cb.Cover.Path.Value) : null, cb.Cover?.Path.Value, _bookPreviewService))];
             }
             catch (Exception ex)
             {

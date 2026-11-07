@@ -50,7 +50,7 @@ public partial class CreateCopyBookWindowView : Window
         }
         if (DataContext is CreateCopyBookWindowViewModel viewModel)
         {
-            viewModel.SetCoverImage(files[0].Path.LocalPath) ;
+            viewModel.SetCoverImage(files[0].Path.LocalPath);
         }
     }
 }

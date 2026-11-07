@@ -9,6 +9,11 @@ using MyLearning.Desktop.Services;
 using MyLearning.Desktop.Abstractions;
 using MyLearning.Desktop.Views.Dashboard.CreateCopyBookWindow;
 using MyLearning.Desktop.ViewModels.Dashboard.CreateCopyBookWindow;
+using MyLearning.Infrastructure.Database;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using MyLearning.Desktop.Services.BookPreviewService;
+using MyLearning.Rendering.DependencyInjection;
 
 namespace MyLearning.Desktop;
 
@@ -25,9 +30,14 @@ sealed class Program
         using var provider = services.BuildServiceProvider();
         App.ConfigureServices(provider);
 
+        using (var scope = provider.CreateScope())
+        {
+            var dbContext = scope.ServiceProvider.GetRequiredService<SqliteDbContext>();
+            dbContext.Database.Migrate();
+        }
+
         BuildAvaloniaApp()
             .StartWithClassicDesktopLifetime(args);
-
     }
 
 
@@ -36,6 +46,7 @@ sealed class Program
         // Register your services here
         var services = new ServiceCollection();
         services.AddInfrastructureServices("MyLearning.db");
+        services.AddRenderingServices();
         services.AddTransient<MainWindowViewModel>();
         services.AddTransient<MainWindow>();
         services.AddTransient<ShellViewModel>();
@@ -44,6 +55,8 @@ sealed class Program
         services.AddSingleton<ICreateCopyBookDialog, CreateCopyBookDialogService>();
         services.AddTransient<CreateCopyBookWindowView>();
         services.AddTransient<CreateCopyBookWindowViewModel>();
+        services.AddSingleton<IBookPreviewService, BookPreviewService>();
+
 
         return services;
     }

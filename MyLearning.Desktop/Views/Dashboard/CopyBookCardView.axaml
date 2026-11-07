@@ -6,21 +6,21 @@
     x:DataType="vm:CopyBookCardViewModel">
 
     <Border
-        Width="220"
-        Margin="8"
-        Padding="10"
-        BorderBrush="Gray"
-        BorderThickness="1">
+        x:Name="CardSurface"
+        Width="200"
+        Background="#7A7AA1"
+        PointerPressed="CardSurface_PointerPressed">
 
-        <StackPanel Spacing="8">
-            <Image
-                Height="150"
-                Stretch="UniformToFill"
-                Source="{Binding CoverImage}" />
+    <StackPanel Spacing="8">
+        <Image
+            Height="150"
+            Stretch="Uniform"
+            Source="{Binding PreviewImage}" />
 
-            <TextBlock
-                FontWeight="Bold"
-                Text="{Binding Name}" />
-        </StackPanel>
-    </Border>
+        <TextBlock
+            FontWeight="Bold"
+            TextAlignment="Center"
+            Text="{Binding Name}" />
+    </StackPanel>
+</Border>
 </UserControl>

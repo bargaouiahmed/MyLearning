@@ -30,5 +30,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MyLearning.Infrastructure\MyLearning.Infrastructure.csproj" />
+    <ProjectReference Include="..\MyLearning.Rendering\MyLearning.Rendering.csproj" />
   </ItemGroup>
 </Project>

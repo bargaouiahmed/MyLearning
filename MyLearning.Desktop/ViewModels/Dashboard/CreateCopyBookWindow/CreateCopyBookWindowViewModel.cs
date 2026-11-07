@@ -15,7 +15,7 @@ namespace MyLearning.Desktop.ViewModels.Dashboard.CreateCopyBookWindow
     {
         [ObservableProperty]
         private Bitmap? coverImage;
- 
+
         public void SetCoverImage(string path)
         {
             CoverPath = path;

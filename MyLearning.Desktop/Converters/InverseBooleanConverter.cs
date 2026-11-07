@@ -8,7 +8,7 @@ using Avalonia.Data.Converters;
 namespace MyLearning.Desktop.Converters
 {
     public sealed class InverseBooleanConverter : IValueConverter
-    { 
+    {
         public object Convert(object? value, Type targetType, object? parameter, CultureInfo cultureInfo)
 
         {
